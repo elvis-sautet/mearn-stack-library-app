@@ -1,0 +1,20 @@
+<div class="max-w-lg w-full mx-auto mt-10">
+  <div class="bg-white mx-5 p-3 rounded-md shadow-md w-full relative">
+    <div class="flex justify-center">
+      <img class="h-14 w-14 rounded-full" src="<%= story.user.image %> " alt="" />
+    </div>
+	<div class="text-xs absolute right-3 top-3">
+		<span class="text-gray-50 rounded-md px-2 py-1 <%= story.status=="public"?"bg-green-800":"bg-yellow-600"%>"><%= story.status %> </span> 
+	</div>
+    <div class="text-center leading-7">
+      <h1 class="text-lg font-semibold text-gray-800">
+        <%= story.user.displayName %>
+      </h1>
+      <h1 class="text-head-amazon"><%= story.title %>.</h1>
+    </div>
+    <div class="absolute bottom-1 text-xs text-center">
+      <span class="text-gray-300"><%= story.createdAt %> </span>
+    </div>
+    <div class="text-center text-gray-600 text-sm pb-3"><%- story.body %></div>
+  </div>
+</div>

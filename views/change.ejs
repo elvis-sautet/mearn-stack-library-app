@@ -1,0 +1,33 @@
+<%- include("./partials/_add_btn") %>
+<div>
+  <h3>Welcome <%= user %></h3>
+  <p>Here is a list of your stories</p>
+</div>
+
+<% if(stories.length>0){ %> <% stories.forEach(story => {%>
+<div>
+  <a href="/stories/<%= story._id %> ">
+    <h1><%= story.title %></h1>
+    <p>
+      Created At:<%= formatDate(story.createdAt, 'DD/MM/YYYY, HH:mm:ss a') %>
+    </p>
+	<span class="text-gray-50 rounded-md px-2 py-1 <%= story.status=="public"?"bg-green-800":"bg-yellow-600"%>"><%= story.status %> </span>
+	<div>
+		 <a href="/stories/edit/<%= story._id %> " class="text-gray-400 hover:text-gray-100 mx-2">
+                <i class="material-icons-outlined text-base">edit</i>
+              </a>
+              <form action="/stories/<%= story._id %>" method="POST" class="flex items-center mt-2  w-max">
+              <input class="hidden"  type="hidden" name="_method" value="DELETE" />
+              <button type="submit" class="w-max">
+              <a href="#" class="text-gray-400 hover:text-gray-100 ml-2">
+                <i class="material-icons-round text-base">delete_outline</i>
+              </a></button></form>
+	</div>
+  </a>
+  <% }) %> <% }else{ %>
+  <div>
+    <h1>No stories Found to Dislay</h1>
+    <p>Please add new stories</p>
+  </div>
+</div>
+<% } %>

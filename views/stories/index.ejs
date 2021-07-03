@@ -1,0 +1,87 @@
+<div class="mt-4">
+  <div
+    class="
+      grid grid-cols-1
+      space-x-3
+      sm:grid-cols-2
+      md:grid-cols-3
+      lg:grid-cols-4
+      gap-3
+      mx-5
+    "
+  >
+    <% if(stories.length > 0){ %> <% stories.forEach(story => { %>
+    <div class="p-3 bg-white shadow-md rounded-lg relative">
+      <!-- edit icon -->
+      <% if(story.user._id.toString() === user._id.toString()){ %>
+      <div
+        class="
+          bg-green-500
+          rounded-full
+          h-8
+          w-8
+          flex
+          justify-center
+          items-center
+          absolute
+          right-3
+        "
+      >
+        <a
+          href="/stories/edit/<%= story._id%>"
+          class="text-white hover:text-gray-100 mx-2"
+        >
+          <i class="material-icons-outlined text-base">edit</i>
+        </a>
+      </div>
+      <% } %>
+
+      <div class="flex justify-center">
+        <img
+          class="
+            w-14
+            h-14
+            object-contain
+            rounded-full
+            border-2 border-indigo-500
+          "
+          src="<%= story.user.image %> "
+        />
+      </div>
+      <div>
+        <h2 class="text-center text-gray-800 text-md font-semibold capitalize">
+          <%= story.title %>
+        </h2>
+        <div class="mt-2 text-gray-600 line-clamp-2 text-sm text-center">
+          <%- story.body %>
+        </div>
+      </div>
+      <div class="flex justify-center mt-4">
+        <a
+          href="/stories/user/<%= story.user._id %> "
+          class="text-md font-medium text-indigo-500 capitalize"
+          ><%= story.user.displayName %>
+        </a>
+      </div>
+      <div class="flex justify-center mt-4">
+        <a
+          href="/stories/<%= story._id %>"
+          class="
+            text-sm
+            font-medium
+            px-5
+            py-2
+            rounded-lg
+            border border-indigo-500
+            bg-gray-500
+            text-white
+          "
+          >Read More
+        </a>
+      </div>
+    </div>
+    <% }) %> <% }else{ %>
+    <p>The are no stories</p>
+    <% } %>
+  </div>
+</div>

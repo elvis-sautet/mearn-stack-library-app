@@ -1,0 +1,64 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/styles/main.css" />
+    <title>Story Books <%= locals.title ? "| "+title:null %></title>
+  </head>
+  <style>
+    .table {
+      border-spacing: 0 15px;
+    }
+
+    i {
+      font-size: 1rem !important;
+    }
+
+    .table tr {
+      border-radius: 20px;
+    }
+
+    tr td:nth-child(n + 5),
+    tr th:nth-child(n + 5) {
+      border-radius: 0 0.625rem 0.625rem 0;
+    }
+
+    tr td:nth-child(1),
+    tr th:nth-child(1) {
+      border-radius: 0.625rem 0 0 0.625rem;
+    }
+  </style>
+  <body class="bg-gray-200 relative">
+    <%- include("../partials/_header") %> <%- body %>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.16.1/ckeditor.js"
+      integrity="sha512-2nFxKVmFuBhAR45DBnAANBjtxzf7z0m6wRU7NOquxibA6efrQpUtdjFT4wzqewqTI3/cCNbBzJNUtu1NxjFiKw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script>
+      CKEDITOR.replace("body", {
+        plugins: "wysiwygarea, toolbar, basicstyles, link",
+      });
+      const nav = document.getElementById("nav-toogle");
+      const bugger = document.getElementById("humbeger");
+
+      bugger.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (nav.classList.contains("hidden")) {
+          nav.classList.remove("hidden");
+        } else {
+          nav.classList.add("hidden");
+        }
+      });
+    </script>
+  </body>
+</html>

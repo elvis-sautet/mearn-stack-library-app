@@ -1,0 +1,64 @@
+  <%- include("./partials/_add_btn") %>
+
+<div class="mx-5 my-3 bg-white max-w-md rounded shadow-md p-3">
+  <h3 class=''>Welcome <span class='text-gray-800 font-semibold tracking-wide'><%= user %></span></h3>
+
+
+<% if(stories.length>0){ %>
+  <p>Here is a list of your stories:</p>
+  </div>
+<div
+  class="grid gap-2 space-y-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mx-5"
+>
+  <% stories.forEach(story => {%>
+  <div class="bg-white px-2 py-8 rounded-md shadow-sm overflow-hidden relative">
+    <div class="leading-7">
+      <h1 class="text-gray-800 font-semibold text-center capitalize text-lg line-clamp-1">
+        <%= story.title %>
+      </h1>
+<div class="text-center">
+      <p class="text-gray-500 text-xs">
+        Created At: <%= formatDate(story.createdAt, 'DD/MM/YYYY, HH:mm:ss a') %>
+      </p>
+    </div>
+      <!-- body -->
+      <div class="text-sm text-gray-500 text-center py-2"><%- story.body %></div>
+    </div>
+    <!-- buttons -->
+    <div class="flex items-center space-x-6 justify-center ">
+      <div>
+        <a
+        href="/stories/<%= story._id %>"
+        class="px-4 py-1 rounded-full border border-gray-500 text-sm text-gray-600"
+        >Read More</a
+      >
+      <a href="/stories/edit/<%= story._id %> " class="text-gray-800 mx-2">
+        <i class="material-icons-outlined text-base">edit</i>
+      </a>
+      </div>
+      <form
+        action="/stories/<%= story._id %>"
+        method="POST"
+        class="flex items-center mt-4 w-max"
+      >
+        <input class="hidden" type="hidden" name="_method" value="DELETE" />
+        <button type="submit" class="w-max bg-transparent">
+          <a href="#" class="text-red-800 ml-2">
+            <i class="material-icons-round text-base">delete_outline</i>
+          </a>
+        </button>
+      </form>
+        <div class="text-xs rounded-full absolute right-1 top-2">
+      <span class="text-gray-50 rounded-md px-2 py-1  <%= story.status=="public"?"bg-green-800":"bg-yellow-600"%>"><%= story.status %> </span>
+    </div>
+    
+    </div>
+    
+  </div>
+  <% }) %> <% }else{ %>
+  <div class="mx-5 my-3 bg-white max-w-md rounded shadow-md p-3 text-center">
+    <h1>No stories Found to Dislay</h1>
+    <p>Please add new stories</p>
+  </div>
+</div>
+<% } %>
